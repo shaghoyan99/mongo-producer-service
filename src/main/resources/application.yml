@@ -1,0 +1,29 @@
+spring:
+  application:
+    name: mongo-producer-service
+
+  data:
+    mongodb:
+      uri: ${MONGO_URI:mongodb://localhost:27017/?replicaSet=rs0}
+      database: ${MONGO_DATABASE:collector_db}
+      auto-index-creation: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+  endpoint:
+    health:
+      show-details: always
+
+app:
+  producer:
+    interval-ms: ${PRODUCER_INTERVAL_MS:1800000}
+
+server:
+  port: 8081
+
+logging:
+  level:
+    am.wago.mongoproducer: DEBUG
